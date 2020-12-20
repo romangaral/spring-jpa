@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.curso.web.app.models.dao.IClienteDao;
 import com.curso.web.app.models.entity.Cliente;
@@ -52,6 +53,16 @@ public class ClienteController {
 	@PostMapping(value = "/form")
 	public String guardar(Cliente cliente) {
 		clienteDao.save(cliente);
+		return "redirect:/listar";
+	}
+	
+	@RequestMapping(value = "/eliminar/{id}")
+	public String eliminar(@PathVariable(value = "id")Long id) {
+		
+		if(id > 0) {
+			clienteDao.delete(id);
+		}
+		
 		return "redirect:/listar";
 	}
 	
