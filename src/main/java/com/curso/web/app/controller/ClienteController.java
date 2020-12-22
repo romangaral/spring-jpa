@@ -17,7 +17,7 @@ public class ClienteController {
 	@Autowired
 	private IClienteService clienteService;
 	
-	@GetMapping(value = "/listar")
+	@GetMapping(value = {"/","/listar"})
 	public String listar(Model model) {
 		model.addAttribute("titulo", "Listado de clientes");
 		model.addAttribute("clientes", clienteService.findAll());
